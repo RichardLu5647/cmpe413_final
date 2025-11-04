@@ -12,7 +12,7 @@
 
 ~~~
 
-### Link to Public Githib repo
+### Link to Public Github Repo for Easy File Download
 ~~~
 https://github.com/RichardLu5647/cmpe413_final.git
 ~~~
