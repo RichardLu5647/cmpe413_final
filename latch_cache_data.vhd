@@ -37,13 +37,14 @@ architecture structural of latch_cache_data is
     
     -- Stores the data to be inputted based on enables.
     signal data_at : std_logic_vector(7 downto 0);
+    signal temp_data : std_logic_vector(7 downto 0);
 
 begin
 
     -- Sets new data if enable is high, else it stays same.
     if_enable: for i in 0 to 7 generate
         enable_mux: mux2to1 port map(
-            D0 => data_out(i),  -- hold old value when ENABLE is low.
+            D0 => temp_data(i),  -- hold old value when ENABLE is low.
             D1 => data(i),      
             S  => enable,    
             Y  => data_at(i)
@@ -56,10 +57,12 @@ begin
             CLK             => CLK,
             RESET           => RESET,
             CD_or_CA        => data_at(i),
-            cache_data_addr => data_out(i)
+            cache_data_addr => temp_data(i)
         );
     end generate;
 
+    data_out <= temp_data;
+    
 end architecture;
 
 

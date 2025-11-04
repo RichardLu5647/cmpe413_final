@@ -1,32 +1,32 @@
---
--- Entity: negative edge triggered D flip-flop (dff)
+-- Entity: positive level triggered D latch
 -- Architecture : structural
--- Author: 
 --
+  
 
 library STD;
 library IEEE;                      
 use IEEE.std_logic_1164.all;       
 
-entity dff is                      
+entity dlatch is                      
   port ( d   : in  std_logic;
          clk : in  std_logic;
          q   : out std_logic;
          qbar: out std_logic); 
-end dff;                          
+end dlatch;                          
 
-architecture structural of dff is 
+architecture structural of dlatch is 
 
+ 
   
 begin
   
-  output: process                 
+  output: process (d,clk)                  
 
   begin                           
-    wait until ( clk'EVENT and clk = '0' ); 
+    if clk = '1' then 
     q <= d;
     qbar <= not d ;
-  end process output;        
-
+ end if; 
+ end process output;        
                              
 end structural;  

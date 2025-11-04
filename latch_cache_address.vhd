@@ -37,13 +37,14 @@ architecture structural of latch_cache_address is
     
     -- Stores the address to be inputted based on enables.
     signal address_at : std_logic_vector(5 downto 0);
+    signal temp_addr  : std_logic_vector(5 downto 0);
 
 begin
 
     -- Sets new data if enable is high, else it stays same.
     if_enable: for i in 0 to 5 generate
         enable_mux: mux2to1 port map(
-            D0 => address_out(i),  -- hold old value when ENABLE is low.
+            D0 => temp_addr(i),  -- hold old value when ENABLE is low.
             D1 => address(i),      
             S  => enable,    
             Y  => address_at(i)
@@ -56,9 +57,11 @@ begin
             CLK             => CLK,
             RESET           => RESET,
             CD_or_CA        => address_at(i),
-            cache_data_addr => address_out(i)
+            cache_data_addr => temp_addr(i)
         );
     end generate;
+    
+    address_out <= temp_addr;
 
 end architecture;
 

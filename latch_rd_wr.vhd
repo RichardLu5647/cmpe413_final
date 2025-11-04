@@ -37,12 +37,13 @@ architecture structural of latch_rd_wr is
     
     -- Stores the data to be inputted based on enables.
     signal rd_wr_at : std_logic;
+    signal temp_rd_wr : std_logic;
 
 begin
 
     -- Sets new rd_wr if enable is high, else it stays same.
     enable_mux: mux2to1 port map(
-        D0 => rd_wr_out,  -- hold old value when ENABLE is low.
+        D0 => temp_rd_wr,  -- hold old value when ENABLE is low.
         D1 => rd_wr,      
         S  => enable,    
         Y  => rd_wr_at
@@ -53,7 +54,9 @@ begin
         CLK             => CLK,
         RESET           => RESET,
         CD_or_CA        => rd_wr_at,
-        cache_data_addr => rd_wr_out
+        cache_data_addr => temp_rd_wr
     );
+
+    rd_wr_out <= temp_rd_wr;
 
 end architecture;
