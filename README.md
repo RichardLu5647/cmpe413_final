@@ -13,12 +13,6 @@
 ~~~
 
 ### Link to Public Githib repo
-
 ~~~
-
-~~~
-
-### Gitclone link if needed
-~~~
-
+https://github.com/RichardLu5647/cmpe413_final.git
 ~~~
