@@ -16,3 +16,12 @@
 ~~~
 https://github.com/RichardLu5647/cmpe413_final.git
 ~~~
+
+### Testbenches
+cache_cell_tb is the testbench for the cache cell.
+cache_block_tb is the testbench for the cache block.
+cache_array_tb is the testbench for the cache array.
+cache_tb is the testbench for the full cache implementation.
+cache_tb is also the test bench for cache_fsm because the cache_tb
+heavily relies on the functionality of the fsm. And cache_tb simulates 
+fsm inputs aswell.
