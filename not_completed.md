@@ -1,6 +1,5 @@
 ## Uncompleted Layouts
 - [X] tx
-- [ ] dff
 - [X] dlatch
 - [X] xnor2
 - [ ] mux2to1
