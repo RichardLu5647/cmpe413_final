@@ -2,7 +2,7 @@
 - [X] tx
 - [X] dlatch
 - [X] xnor2
-- [ ] mux2to1
+- [X] mux2to1
 - [X] decoder2to4
 - [ ] mux2to1_2bit
 - [ ] mux4to1
