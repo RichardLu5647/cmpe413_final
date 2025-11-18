@@ -1,8 +1,8 @@
 ## Uncompleted Layouts
-- [x] tx
+- [X] tx
 - [ ] dff
 - [ ] dlatch
-- [ ] xnor2
+- [X] xnor2
 - [ ] mux2to1
 - [ ] decoder2to4
 - [ ] mux2to1_2bit
