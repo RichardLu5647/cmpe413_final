@@ -4,7 +4,7 @@
 - [X] xnor2
 - [X] mux2to1
 - [X] decoder2to4
-- [ ] mux2to1_2bit
+- [X] mux2to1_2bit
 - [ ] mux4to1
 - [ ] tri_buffer
 - [ ] set_curr_state
