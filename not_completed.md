@@ -1,5 +1,5 @@
 ## Uncompleted Layouts
-- [ ] tx
+- [x] tx
 - [ ] dff
 - [ ] dlatch
 - [ ] xnor2
