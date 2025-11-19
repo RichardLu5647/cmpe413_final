@@ -1,12 +1,4 @@
 ## Uncompleted Layouts
-- [X] tx
-- [X] dlatch
-- [X] xnor2
-- [X] mux2to1
-- [X] decoder2to4
-- [X] mux2to1_2bit
-- [X] mux4to1
-- [ ] tri_buffer
 - [ ] set_curr_state
 - [ ] set_curr_states
 - [ ] fsm_states
