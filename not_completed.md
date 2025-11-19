@@ -2,7 +2,6 @@
 
 ### Get Done by Wednesday
 - [ ] latch_cache_data
-- [ ] latch_rd_wr
 - [ ] select_write_data
 - [ ] byte_selector
 
