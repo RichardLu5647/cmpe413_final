@@ -1,9 +1,6 @@
 ## Uncompleted Layouts
 
 ### Get Done by Wednesday
-- [ ] set_curr_state
-- [ ] latch_at_negedge
-- [ ] latch_cache_address
 - [ ] latch_cache_data
 - [ ] latch_rd_wr
 - [ ] select_write_data
