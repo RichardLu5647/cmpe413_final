@@ -1,7 +1,6 @@
 ## Uncompleted Layouts
 
 ### Get Done by Wednesday
-- [ ] latch_cache_data
 - [ ] select_write_data
 - [ ] byte_selector
 
