@@ -1,8 +1,5 @@
 ## Uncompleted Layouts
 
-### Get Done by Wednesday
-- [ ] select_write_data
-
 ### Start by Thursday
 - [ ] fsm_states
 - [ ] cache_cell
