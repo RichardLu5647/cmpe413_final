@@ -2,7 +2,6 @@
 
 ### Get Done by Wednesday
 - [ ] select_write_data
-- [ ] byte_selector
 
 ### Start by Thursday
 - [ ] set_curr_states
