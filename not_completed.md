@@ -4,7 +4,6 @@
 - [ ] select_write_data
 
 ### Start by Thursday
-- [ ] set_curr_states
 - [ ] fsm_states
 - [ ] cache_cell
 - [ ] cache_block
