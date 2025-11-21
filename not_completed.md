@@ -2,7 +2,5 @@
 
 ### Start by Thursday
 - [ ] fsm_states
-- [ ] cache_block
-- [ ] cache_array
 - [ ] fsm_states
 - [ ] cache
