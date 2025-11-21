@@ -1,6 +1,6 @@
 ## Uncompleted Layouts
 
 ### Start by Thursday
-- [ ] fsm_states
-- [ ] fsm_states
+- [ ] set_next_states
+- [ ] cache_fsm
 - [ ] cache
