@@ -1,4 +1,3 @@
-~~~vhdl
 --
 -- Entity: cache_fsm
 -- Architecture: structural
@@ -274,7 +273,7 @@ begin
     -- Determines when data should be inputted.
     enable_data_in2: and2 port map(
         input1 => states(0),
-        input2 => START,
+        input2 => input_en0,
         output => input_en
     );
 
@@ -369,4 +368,3 @@ begin
 
 
 end structural;
-~~~
