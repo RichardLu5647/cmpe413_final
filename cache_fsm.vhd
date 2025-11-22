@@ -16,7 +16,6 @@ entity cache_fsm is
 
         -- CPU interface
         START         : in  std_logic;
-        CHECK         : in std_logic;
         CA            : in  std_logic_vector(5 downto 0);  -- CPU address
         RD_WR         : in  std_logic;                     -- 1=read, 0=write
         CD            : inout std_logic_vector(7 downto 0); -- CPU data bus
@@ -195,7 +194,7 @@ architecture structural of cache_fsm is
     signal next_states : std_logic_vector (21 downto 0);
 
     -- Enable for inputing address, data, and rd_wr.
-    signal input_en, input_en0 : std_logic;
+    signal input_en: std_logic;
 
     -- Enable for memory data
     signal memory_data_en : std_logic;
@@ -261,13 +260,6 @@ begin
         data_in => read_data,
         enable  => states(20),
         data_out => CD
-    );
-
-    -- Data is sent in when START is active or when CHECK is active.
-    enable_data_in1: or2 port map(
-        input1 => START,
-        input2 => CHECK,
-        output => input_en0
     );
         
     -- Determines when data should be inputted.
@@ -368,3 +360,4 @@ begin
 
 
 end structural;
+
