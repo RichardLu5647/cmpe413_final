@@ -195,7 +195,7 @@ architecture structural of cache_fsm is
     signal next_states : std_logic_vector (21 downto 0);
 
     -- Enable for inputing address, data, and rd_wr.
-    signal input_en, input_en0 : std_logic;
+    signal input_en, input_check : std_logic;
 
     -- Enable for memory data
     signal memory_data_en : std_logic;
@@ -262,24 +262,24 @@ begin
         enable  => states(20),
         data_out => CD
     );
-
-    -- Data is sent in when START is active or when CHECK is active.
-    enable_data_in1: or2 port map(
-        input1 => START,
-        input2 => CHECK,
-        output => input_en0
-    );
         
     -- Determines when data should be inputted.
-    enable_data_in2: and2 port map(
+    enable_data_in: and2 port map(
         input1 => states(0),
-        input2 => input_en0,
+        input2 => START,
         output => input_en
+    );
+
+    -- Address is sent in if check is high, want to check if hit or miss.
+    enable_data_in_check: or2 port map(
+        input1 => input_en,
+        input2 => CHECK,
+        output => input_check
     );
 
     -- Latches the cache address if start is high and current state is idle.
     input_address: latch_cache_address port map(
-        CLK             => CLK,
+        CLK         => CLK,
         address     => CA,
         enable      => input_en,
         RESET       => RESET,
@@ -288,7 +288,7 @@ begin
 
     -- Latches the cache data if start is high and current state is idle.
     input_data: latch_cache_data port map(
-        CLK             => CLK,
+        CLK         => CLK,
         data        => CD,
         enable      => input_en,
         RESET       => RESET,
@@ -297,9 +297,9 @@ begin
 
     -- Latches the rd_wr if start is high and current state is idle.
     input_rd_wr: latch_rd_wr port map(
-        CLK             => CLK,
+        CLK         => CLK,
         rd_wr       => RD_WR,
-        enable      => input_en,
+        enable      => input_check,
         RESET       => RESET,
         rd_wr_out   => latched_rd_wr
     );
