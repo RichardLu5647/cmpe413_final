@@ -233,7 +233,7 @@ begin
 
         -- Control signals (from controller)
         rd_wr => rd_wr_0,
-        tag_write_enable => (tag_write_enable and chip_enable_0),
+        tag_write_enable => tag_write_0,
         valid_in => valid_in,
         RESET => RESET
     );
@@ -259,7 +259,7 @@ begin
 
         -- Control signals (from controller)
         rd_wr => rd_wr_1,
-        tag_write_enable => (tag_write_enable and chip_enable_1),
+        tag_write_enable => tag_write_1,
         valid_in => valid_in,
         RESET => RESET
     );
