@@ -157,7 +157,7 @@ architecture behavioral of cache_2_way is
     signal valid_in      : std_logic;
     signal tag_write_enable: std_logic;
     signal tag_write_0, tag_write_1 : std_logic;
-	signal busy : std_logic;
+	signal busy_sig : std_logic;
 
     -- OUTPUT_ENABLE
     signal OUTPUT_ENABLE          : std_logic;
@@ -193,7 +193,7 @@ begin
         CA            => CA,
         RD_WR         => RD_WR,
         CD            => CD,
-        BUSY          => busy,
+        BUSY          => busy_sig,
         OUTPUT_ENABLE => OUTPUT_ENABLE,
 
         -- Cache interface (internal connections)
@@ -328,7 +328,7 @@ begin
     detect_busy: latch_at_negedge port map(
         CLK             => not_clk,
         RESET           => RESET,
-        CD_or_CA        => busy,
+        CD_or_CA        => busy_sig,
         cache_data_addr => busy_d
     );
 
@@ -339,7 +339,7 @@ begin
 		
     -- Inverts busy
     inv_busy: inverter port map(
-        input => busy,
+        input => busy_sig,
         output => not_busy
     );
 
@@ -358,7 +358,7 @@ begin
         cache_data_addr => lru_bit
     );
 
-	BUSY <= busy;
+      BUSY <= busy_sig;
 
     -- ======================================================================
     -- CHIP SELECT LOGIC
