@@ -29,9 +29,9 @@ architecture structural of demux1to2 is
 
     component and2 is
         port(
-            a : in std_logic;
-            b : in std_logic;
-            y : out std_logic
+            input1 : in std_logic;
+            input2 : in std_logic;
+            output : out std_logic
         );
     end component;
 
@@ -47,15 +47,15 @@ begin
     );
 
     and_low: and2 port map(
-        a => D,
-        b => S_bar,
-        y => Y0
+        input1 => D,
+        input2 => S_bar,
+        output => Y0
     );
 
     and_high: and2 port map(
-        a => D,
-        b => S,
-        y => Y1
+        input1 => D,
+        input2 => S,
+        output => Y1
     );
 
 end structural;
