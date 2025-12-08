@@ -157,6 +157,7 @@ architecture behavioral of cache_2_way is
     signal valid_in      : std_logic;
     signal tag_write_enable: std_logic;
     signal tag_write_0, tag_write_1 : std_logic;
+	signal busy : std_logic;
 
     -- OUTPUT_ENABLE
     signal OUTPUT_ENABLE          : std_logic;
@@ -167,13 +168,14 @@ architecture behavioral of cache_2_way is
 
     -- Chip selection logic signals
     signal chip_enable_0, chip_enable_1 : std_logic;
-    signal way1_hit, chosen_lru, not_hit_0, not_hit_1 : std_logic;
+    signal way1_hit, chosen_lru, not_hit_0, not_hit_1, any_hit : std_logic;
 
     -- LRU bit logic signals
     signal lru_set, lru_bit       : std_logic;
     signal updated_lru_bit        : std_logic;
     signal next_lru               : std_logic;
     signal not_busy, busy_d, busy_edge    : std_logic;  
+	signal not_clk : std_logic;
 
 begin
 
@@ -191,11 +193,11 @@ begin
         CA            => CA,
         RD_WR         => RD_WR,
         CD            => CD,
-        BUSY          => BUSY,
+        BUSY          => busy,
         OUTPUT_ENABLE => OUTPUT_ENABLE,
 
         -- Cache interface (internal connections)
-        is_hit        => (is_hit_1 or is_hit_0),
+        is_hit        => any_hit,
         read_data     => read_data,
         block_select  => block_select,
         byte_select   => byte_select,
@@ -324,15 +326,20 @@ begin
 
     -- Stores the busy at posedge (not CLK makes it posedge)
     detect_busy: latch_at_negedge port map(
-        CLK             => not CLK,
+        CLK             => not_clk,
         RESET           => RESET,
-        CD_or_CA        => BUSY,
+        CD_or_CA        => busy,
         cache_data_addr => busy_d
     );
 
+	inv_clk: inverter port map(
+		input => CLK,
+		output => not_clk
+	);
+		
     -- Inverts busy
     inv_busy: inverter port map(
-        input => BUSY,
+        input => busy,
         output => not_busy
     );
 
@@ -345,11 +352,13 @@ begin
 
     -- stores LRU bit at posedge
     store_lru: latch_at_negedge port map(
-        CLK             => not CLK,
+        CLK             => not_clk,
         RESET           => RESET,
         CD_or_CA        => next_lru,
         cache_data_addr => lru_bit
     );
+
+	BUSY <= busy;
 
     -- ======================================================================
     -- CHIP SELECT LOGIC
@@ -409,5 +418,9 @@ begin
         output => tag_write_1
     );
 
-
+	hits: or2 port map(
+		input1 => is_hit_1,
+		input2 => is_hit_0,
+		output => any_hit
+	);
 end behavioral;
