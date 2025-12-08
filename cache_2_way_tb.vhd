@@ -55,7 +55,6 @@ architecture behavioral of cache_tb is
 
     -- Clock period (100 MHz = 10ns period)
     constant CLK_PERIOD : time := 10 ns;
-    constant SIM_END_TIME : time := 1000 ns;
 
     -- Memory simulation signals
     type memory_array is array (0 to 63) of std_logic_vector(7 downto 0);
@@ -97,14 +96,7 @@ begin
         end loop;
         wait;
     end process;
-/*
-   simulation_limit : process 
-      begin 
-          wait for SIM_END_TIME; 
-          report "---- FORCED STOP: Simulation time limit reached ----"; 
-          assert false severity failure; 
-   end process;
-*/
+
     -- Clk counter
     clk_count_process: process (CLK)
     begin
