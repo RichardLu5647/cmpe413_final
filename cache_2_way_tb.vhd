@@ -10,11 +10,11 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity cache_tb is
+entity cache_2_way_tb is
     -- Testbench has no ports
-end cache_tb;
+end cache_2_way_tb;
 
-architecture behavioral of cache_tb is
+architecture behavioral of cache_2_way_tb is
 
     -- Component under test
     component cache_2_way is
